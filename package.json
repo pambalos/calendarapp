@@ -1,0 +1,15 @@
+{
+  "name": "jstestcalendar",
+  "version": "1.0.0",
+  "description": "js test calendar",
+  "main": "main.js",
+  "dependencies": {
+    "react-available-times": "^1.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "run"
+  },
+  "author": "Bradley Justice",
+  "license": "ISC"
+}

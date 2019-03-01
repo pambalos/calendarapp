@@ -1,0 +1,5 @@
+{"installed":{"client_id":"795630271810-ojbg0p76in5k039m36n46k3bit1jcp1g.apps.googleusercontent.com",
+  "project_id":"calendartest-1549865214740","auth_uri":"https://accounts.google.com/o/oauth2/auth",
+  "token_uri":"https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+  "client_secret":"3yvm--L02J36RlLnbSSDY0PX","redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}
