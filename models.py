@@ -18,16 +18,16 @@ class Event(db.Model):
 
 class CbookInfo(db.Model):
     userID = db.Column(db.Integer)
-    token = db.Column(db.String(60))
+    access_code = db.Column(db.String(60))
     refresh_token = db.Column(db.String(60))
     token_expires = db.Column(db.DateTime)
 
-    def update(self, token, refresh_token, token_expires):
-        self.token = token
+    def update(self, access_code, refresh_token, token_expires):
+        self.access_code = access_code
         self.refresh_token = refresh_token
         self.token_expires = token_expires
         db.session.commit()
-        
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True)

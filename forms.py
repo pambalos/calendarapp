@@ -9,7 +9,7 @@ class LoginForm(FlaskForm):
     remember = BooleanField("Stay logged in?")
     submit = SubmitField("Login")
 
-class RegisterForm(FlaskForm):
+class RegistrationForm(FlaskForm):
     email = StringField("Email", validators = [DataRequired(), Email()])
     password = PasswordField("Password", validators = [DataRequired()])
     remember = BooleanField("Stay logged in?")

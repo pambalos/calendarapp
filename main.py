@@ -59,8 +59,15 @@ def register():
 def profile():
     return render_template('profile.html')
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
+@app.route('/addevents')
+def addevents():
 
+    return render_template('addevents.html')
 
 # OAuth routes
 @app.route('/authorize/checkbook')
@@ -87,7 +94,7 @@ def cbookcallback():
     response_date = json.loads(response.text)
     token_expires = time_requested + timedelta(seconds = response_date['expires_in'])
     user = User.query.filter_by(email = current_user.email).first()
-    payment_info = CbookInfo(userID = user.id, token = response_date['access_token'], refresh_token = response_date['refresh_token'], token_expires = token_expires)
+    payment_info = CbookInfo(userID = user.id, access_code = response_date['access_token'], refresh_token = response_date['refresh_token'], token_expires = token_expires)
     db.session.commit()
 
 # API for retrieving my calendar
