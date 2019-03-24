@@ -1,30 +1,13 @@
-from flask import Flask, render_template, url_for, request
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, login_required
-from flask_oauthlib.client import OAuth
-from keys import *
-from forms import *
-from models import *
+from templates import app
+from flask import render_template, Blueprint
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = "sZWjFJmyFQnzkVMxbOIAIZNJhaJV"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db' #importing sqldatabase
+calendar_blueprint = Blueprint('calendar', __name__)
 
-db = SQLAlchemy(app)
-db.app = app
-oauth = OAuth(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
-login_manager.login_message_category = 'info'
-
-
-@app.route('/')
+@calendar_blueprint.route('/')
 def home():
     return render_template('home.html')
 
-@app.route('/login')
+@calendar_blueprint.route('/login')
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -41,7 +24,7 @@ def login():
                 flash(f'That email is not in use, please try again or register', 'danger')
     return render_template('login.html', title = 'Login', form = form )
 
-@app.route('/register')
+@calendar_blueprint.route('/register')
 def register():
     form = RegistrationForm(FlaskForm)
     if form.validate_on_submit():
@@ -55,30 +38,30 @@ def register():
         return redirect(url_for('profile'))
     return render_template('register.html', title = 'Register', form = form)
 
-@app.route('/profile')
+@calendar_blueprint.route('/profile')
 @login_required
 def profile():
     return render_template('profile.html')
 
-@app.route('/logout')
+@calendar_blueprint.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route('/addevents')
+@calendar_blueprint.route('/addevents')
 def addevents():
 
     return render_template('addevents.html')
 
 # OAuth routes
-@app.route('/authorize/checkbook')
+@calendar_blueprint.route('/authorize/checkbook')
 def authorizeCbook():
     cbook = OAuth2Session(client_id, scope = 'check')
     authorization_url, state = cbook.authorization_url(cbook_auth_url)
     session['oauth_state'] = state
     return redirect(authorization_url)
 
-@app.route('/authorize/checkbook/callback')
+@calendar_blueprint.route('/authorize/checkbook/callback')
 def cbookcallback():
     codestring = str(request.url)
     trash, acode = codestring.split('code=')
@@ -99,9 +82,6 @@ def cbookcallback():
     db.session.commit()
 
 # API for retrieving my calendar
-@app.route('/api/getcalendar/<int:date>', methods = ["GET", "POST"])
+@calendar_blueprint.route('/api/getcalendar/<int:date>', methods = ["GET", "POST"])
 def calendar():
     return "unfinished yo"
-
-if __name__ == '__main__':
-    app.run(debug = True)

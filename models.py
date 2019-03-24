@@ -16,8 +16,8 @@ class Event(db.Model):
     start = db.Column(db.DateTime)
     end = db.Column(db.DateTime)
 
-class CbookInfo(db.Model):
-    userID = db.Column(db.Integer)
+class CbookInfo(db.Model, UserMixin):
+    userID = db.Column(db.Integer, primary_key = True)
     access_code = db.Column(db.String(60))
     refresh_token = db.Column(db.String(60))
     token_expires = db.Column(db.DateTime)
