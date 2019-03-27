@@ -44,3 +44,5 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{ self.email }', '{ self.id }')"
+
+class Tutor(db.Model, Usermixin):

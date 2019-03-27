@@ -28,5 +28,9 @@
     "react-dom": "^16.8.5",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "history" : "^4.9.0",
+    "react-router-dom": "^5.0.0"
   }
 }
