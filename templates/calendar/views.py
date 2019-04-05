@@ -1,5 +1,6 @@
 from templates import app
 from flask import render_template, Blueprint
+from flask_login import login_user, login_required
 
 calendar_blueprint = Blueprint('calendar', __name__)
 

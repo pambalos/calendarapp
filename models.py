@@ -4,7 +4,6 @@ from flask_login import UserMixin #additional setup required for using login_man
 from datetime import datetime #used for checking time
 from keys import *
 
-import requests
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -45,4 +44,5 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{ self.email }', '{ self.id }')"
 
-class Tutor(db.Model, Usermixin):
+class Tutor(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key = True)

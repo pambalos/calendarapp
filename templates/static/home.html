@@ -1,19 +1,17 @@
 {% extends 'layout.html' %}
 {% block content %}
+
+
 <h2>
   This
 </h2>
 
-<script type="text/jsx">
-  var realPython = React.createClass({
-    render: function() {
-      return(<h2> Hi From Real Python Class </h2>)
-    }
-  });
 
-  ReactDOM.render(
-    React.createElement(realPython, null),
-    document.getElementById('content')
-  );
-</script>
+<div id="content"></div>
+<div id = "root"> </div>
+
+<script src="public/bundle.js" type="text/javascript"></script>
+
+
+
 {% endblock content %}

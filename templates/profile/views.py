@@ -1,9 +1,10 @@
 from templates import app
 from flask import render_template, Blueprint
+from flask_login import login_user, login_required
 
-tutorprofile_blueprint = Blueprint('tutorprofile', __name__)
+profile_blueprint = Blueprint('profile', __name__)
 
-@tutorprofile_blueprint.route('/login')
+@profile_blueprint.route('/login')
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -21,7 +22,7 @@ def login():
     return render_template('login.html', title = 'Login', form = form )
 
 
-@tutorprofile_blueprint.route('/register')
+@profile_blueprint.route('/register')
 def register():
     form = RegistrationForm(FlaskForm)
     if form.validate_on_submit():

@@ -19,5 +19,9 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
-import templates.calendar.views import calendar_blueprint
+from templates.calendar.views import calendar_blueprint
+from templates.profile.views import profile_blueprint
+
+
+app.register_blueprint(profile_blueprint)
 app.register_blueprint(calendar_blueprint)

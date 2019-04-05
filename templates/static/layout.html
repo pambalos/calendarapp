@@ -27,16 +27,16 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
-              <a class="nav-item nav-link" href="{{ url_for('home') }}">Schedule</a>
+              <a class="nav-item nav-link" href="{{ url_for('calendar.home') }}">Home</a>
+              <a class="nav-item nav-link" href="{{ url_for('calendar.home') }}">Schedule</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav right" style = "text-align: center;">
               {% if not current_user.is_authenticated %}
-                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+                <a class="nav-item nav-link" href="{{ url_for('profile.login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('profile.register') }}">Register</a>
               {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('profile') }}">
+                <a class="nav-item nav-link" href="{{ url_for('profile.profile') }}">
                 {% if current_user.first_name is not none %}
                   {{current_user.first_name}}
                 {% else %}
